@@ -1,50 +1,39 @@
 import Head from 'next/head'
+import Image from 'next/image'
 
+import { useEffect,useState } from 'react'
+
+import downloadIcon from '../public/download-48.png'
+import uploadIcon from '../public/file2-64.png'
+
+import DwnBox from '../components/DwnBox'
+import UpBox from '../components/UpBox'
 export default function Home() {
+
+  const [boxHeight, setboxHeight] = useState(0);
+  useEffect(() => {
+  },[])
+  
   return (
     <div className="container">
       <Head>
-        <title>Create Next App</title>
+        <title>Tmpfiled3</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
         <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Welcome to <a href="https://nextjs.org">Tmpfiled3</a>
         </h1>
 
         <p className="description">
-          Get started by editing <code>pages/index.js</code>
+          Transfer your file using <b style={{color: 'blue'}}>Decenterlized Internet</b>
         </p>
 
-        <div className="grid">
-          <a href="https://nextjs.org/docs" className="card">
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+        <div className="grid" style={{height: {boxHeight}}}>
+          <UpBox/>
+          <DwnBox/>
 
-          <a href="https://nextjs.org/learn" className="card">
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className="card"
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="card"
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
         </div>
       </main>
 
@@ -129,23 +118,18 @@ export default function Home() {
           font-size: 1.5rem;
         }
 
-        code {
-          background: #fafafa;
-          border-radius: 5px;
-          padding: 0.75rem;
-          font-size: 1.1rem;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-        }
 
         .grid {
           display: flex;
+          flex-direction: column;
           align-items: center;
           justify-content: center;
           flex-wrap: wrap;
-
+          flex-grow: 1;
           max-width: 800px;
           margin-top: 3rem;
+        
+        
         }
 
         .card {
@@ -160,12 +144,15 @@ export default function Home() {
           transition: color 0.15s ease, border-color 0.15s ease;
         }
 
-        .card:hover,
-        .card:focus,
-        .card:active {
+        .card-hover:hover,
+        .card-hover:focus,
+        .card-hover:active {
           color: #0070f3;
           border-color: #0070f3;
         }
+
+        
+
 
         .card h3 {
           margin: 0 0 1rem 0;
@@ -177,9 +164,78 @@ export default function Home() {
           font-size: 1.25rem;
           line-height: 1.5;
         }
+        .upload-box span {
+          margin: 0;
+          font-size: 1.25rem;
+          line-height: 1.5;
+        }
 
         .logo {
           height: 1em;
+        }
+
+        .upload-box {
+          width: 92%;
+          border: 3px dashed ;
+        }
+        .upload-icon-wp {
+          display: block;
+          text-align: center;
+          margin-top: 5rem;
+          transition: all 0.6s;
+        }
+        .upload-icon {
+          // width: 40%;
+          display: inline-block;
+          // height: 100px;
+          text-align: center;
+          // border: 3px solid #ccc;
+          border-radius: 5%;
+        }
+
+        .upload-icon-wp:hover,
+        .upload-icon-wp:focus,
+        .upload-icon-wp:active {
+          color: #0070f3;
+          border-color: #0070f3;
+          color: #0070f3;
+          transform: scale(1.2);
+
+        }
+
+        .upload-footer {
+          margin-top: 100px;
+        }
+
+        .btn {
+          font-size: 1em;
+          border-radius: 5px;
+        }
+        
+        .btn-primary {
+          color: #5189ff;
+          optical: 0.4; 
+        }
+        .btn-download {
+          background-image: url(/download-48.png);
+          background-size: contain;
+          background-repeat: no-repeat;
+          height: 35px;
+          width: 45px;
+          background-position: center center;
+          vertical-align:middle;
+          border-radius: 0px 5px 5px 0px;
+          margin-left: -2px;
+        }
+        .input-code {
+          height: 35px;
+          vertical-align:middle;
+          border-radius: 5px 0px 0px 5px;
+          font-size: x-large;
+          width: 10rem
+        }
+        .code-box {
+          width: 100%;
         }
 
         @media (max-width: 600px) {
