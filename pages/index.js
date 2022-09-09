@@ -13,7 +13,9 @@ export default function Home() {
   const [boxHeight, setboxHeight] = useState(0);
   useEffect(() => {
   },[])
+
   
+
   return (
     <div className="container">
       <Head>
@@ -27,7 +29,7 @@ export default function Home() {
         </h1>
 
         <p className="description">
-          Transfer your file using <b style={{color: 'blue'}}>Decenterlized Internet</b>
+          Transfer your file with <b style={{color: 'blue'}}>Decenterlized Internet</b>
         </p>
 
         <div className="grid" style={{height: {boxHeight}}}>
