@@ -25,6 +25,12 @@
   border-color: #0070f3;
 }
 
+.uploadBox:hover,
+.uploadBox:focus,
+.uploadBox:active {
+  color: #0070f3;
+  border-color: #0070f3;
+}
 .card h3 {
   margin: 0 0 1rem 0;
   font-size: 1.5rem;
@@ -89,15 +95,29 @@
   justify-content: space-between;
   flex-grow: 1;
 }
-.uploadButton {
+
+.btnUpGroup {
   position: absolute;
+  display: block;
+  border-radius: 7px;
   font-size: xx-large;
-  color: white;
-  background-color: #5189ff;
-  border-radius: 10px;
-  height: 55px;
-  width: 300px;
 }
+
+.uploadButton {
+  height: 50px;
+  width: 250px;
+  color: white;
+  background-color: #00CCFF;
+}
+
+.clearButton {
+  position: relative;
+  color: white;
+  background-color: #00CC66;
+  height: 50px;
+  width: 50px;
+}
+
 
 .uploadIconWp {
   display: block;

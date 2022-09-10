@@ -2,19 +2,24 @@ import Head from 'next/head'
 import Image from 'next/image'
 
 import { useEffect,useState } from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 import downloadIcon from '../public/download-48.png'
 import uploadIcon from '../public/file2-64.png'
 
 import DwnBox from '../components/DwnBox'
 import UpBox from '../components/UpBox'
-export default function Home() {
 
+
+
+export default function Home() {
   const [boxHeight, setboxHeight] = useState(0);
   useEffect(() => {
   },[])
 
-  
+
 
   return (
     <div className="container">
@@ -36,7 +41,9 @@ export default function Home() {
           <UpBox/>
           <DwnBox/>
 
+
         </div>
+        <ToastContainer />
       </main>
 
       <footer>
