@@ -97,24 +97,26 @@
 }
 
 .btnUpGroup {
-  position: absolute;
-  display: block;
+  /* position: absolute; */
+  /* display: block; */
+  vertical-align: middle;
+  margin-top: 10px;
   border-radius: 7px;
-  font-size: xx-large;
+  font-size: x-large;
+  text-align: center;
 }
 
 .uploadButton {
-  height: 50px;
-  width: 250px;
+  height: 45px;
+  width: 200px;
   color: white;
   background-color: #00CCFF;
 }
 
 .clearButton {
-  position: relative;
   color: white;
   background-color: #00CC66;
-  height: 50px;
+  height: 45px;
   width: 50px;
 }
 

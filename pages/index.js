@@ -37,10 +37,10 @@ export default function Home() {
           Transfer your file with <b style={{color: 'blue'}}>Decenterlized Internet</b>
         </p>
 
-        <div className="grid" style={{height: {boxHeight}}}>
+        {/* <div className="grid" style={{height: boxHeight}}> */}
+        <div className="grid" style={{height: boxHeight}}>
           <UpBox/>
           <DwnBox/>
-
 
         </div>
         <ToastContainer />
@@ -68,7 +68,7 @@ export default function Home() {
         }
 
         main {
-          padding: 5rem 0;
+          padding: 3rem 0;
           flex: 1;
           display: flex;
           flex-direction: column;
@@ -133,7 +133,7 @@ export default function Home() {
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          flex-wrap: wrap;
+          flex-wrap: nowrap;
           flex-grow: 1;
           max-width: 800px;
           margin-top: 3rem;
