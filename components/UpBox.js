@@ -4,6 +4,7 @@ import Dropzone from "react-dropzone";
 import superagent from "superagent";
 import { useDropzone } from "react-dropzone";
 import { ToastContainer, toast } from "react-toastify";
+import { uploadFileRemote } from "../apis/tmpfile-api"
 
 
 import styles from "./style.module.css";
@@ -90,24 +91,8 @@ export default function UpBox(prop) {
     ));
 
     const onUploadClick = (e) => {
-
-      function onDrop(acceptedFiles) {
-        const req = request.post("/upload");
-        acceptedFiles.forEach((file) => {
-          req.attach(file.name, file);
-          
-        });
-        req.end(callback);
-      }
-
+      uploadFileRemote(acceptedFiles);
       toast.info("uploading...");
-      superagent.get("/test")
-      .end((err, res) => {
-        if (err) {
-          console.log(err);
-          toast.error(`Upload failed: ${err}`);
-        }
-      })
     };
 
     const onClearClick = (e) => {

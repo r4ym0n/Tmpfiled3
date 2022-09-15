@@ -41,7 +41,7 @@ export default function Home() {
         <div className="grid" style={{height: boxHeight}}>
           <UpBox/>
           <DwnBox/>
-
+          <b>{process.env.NODE_ENV}</b>
         </div>
         <ToastContainer />
       </main>
