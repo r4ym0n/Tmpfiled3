@@ -107,7 +107,9 @@ export default function UpBox(prop) {
           toast.error(`Upload failed: ${err}`);
         } else {
           console.log(res.body);
-          toast.success(`Upload successful`);
+          let fcode = res.body.data[0].key;
+          navigator.clipboard.writeText(`${origin}/?fcode=${fcode}`);
+          toast.success(`Upload successful, share link in clipboard`);
         }
       });
     };

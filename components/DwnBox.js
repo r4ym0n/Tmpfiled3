@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import styles from "./style.module.css";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -7,6 +7,17 @@ import { downloadFileRemoteByFilecode } from "../apis/tmpfile-api";
 
 export default function DwnBox() {
   const inputEl = useRef(null);
+
+  useEffect(() => {
+    let q = {};
+    location.search.replace(/([^?&=]+)=([^&]+)/g,(_,k,v)=>q[k]=v);
+    console.log(q)
+    if (q.fcode !== undefined && q.fcode.length === 8) {
+      inputEl.current.value = q.fcode;
+    }
+    // let fcode = location.search
+  },[])
+  
   const onDownloadClick = (e) => {
     let filecode = inputEl.current.value;
     console.log(filecode);
@@ -26,7 +37,7 @@ export default function DwnBox() {
         inputEl.current.focus();
       }}
     >
-      <a href="#" className={styles.a}>
+      <a className={styles.a}>
         <h3>Fetch File &darr;</h3>
         <p style={{ fontSize: "medium" }}>
           If you Have a <code className={styles.code}>FileCode</code>, Paste it
