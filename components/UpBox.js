@@ -16,7 +16,7 @@ export default function UpBox(prop) {
 
     const [dpzDisabled, setdpzDisabled] = useState(false);
     const [fileAccepted, setFileAccepted] = useState(false);
-
+    const [uploadProgress, setUploadProgress] = useState(0);
     function repositionUpButton() {
       const iconX = iconEl.current.x;
       const iconY = iconEl.current.y;
@@ -25,8 +25,7 @@ export default function UpBox(prop) {
       console.log(iconX, iconY);
     }
     useEffect(() => {
-      // repositionUpButton();
-      // window.addEventListener("resize", repositionUpButton, false);
+
     }, []);
 
     const onDrop = useCallback((acceptedFiles) => {}, []);
@@ -93,6 +92,7 @@ export default function UpBox(prop) {
       toast.info("uploading...");
       req.on("progress", (event) => {
         console.log(event);
+        setUploadProgress(Math.round(event.percent*10)/10);
         /* event的值：
         {
           direction: "upload" or "download"
@@ -102,9 +102,11 @@ export default function UpBox(prop) {
         } */
       });
       req.end((err, res) => {
+        setUploadProgress(0);
         if (err) {
           console.log(err);
           toast.error(`Upload failed: ${err}`);
+
         } else {
           console.log(res.body);
           let fcode = res.body.data[0].key;
@@ -123,9 +125,10 @@ export default function UpBox(prop) {
     function DpzFooter(props) {
       if (fileAccepted) {
         return (
-          <div ref={upbtnEl} className={styles.btnUpGroup}>
+          <div className={styles.btnUpGroup}>
             <span>
               <button
+                disabled={uploadProgress!=0?true:false}
                 type="button"
                 className={[
                   styles.button,
@@ -134,7 +137,8 @@ export default function UpBox(prop) {
                 ].join(" ")}
                 onClick={onUploadClick}
               >
-                Upload
+                { uploadProgress==0?"Upload":`${uploadProgress}%` }
+                
               </button>
               <button
                 type="button"
