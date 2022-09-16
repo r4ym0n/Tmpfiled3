@@ -4,8 +4,7 @@ import Dropzone from "react-dropzone";
 import superagent from "superagent";
 import { useDropzone } from "react-dropzone";
 import { ToastContainer, toast } from "react-toastify";
-import { uploadFileRemote } from "../apis/tmpfile-api"
-
+import { uploadFileRemote } from "../apis/tmpfile-api";
 
 import styles from "./style.module.css";
 
@@ -21,7 +20,7 @@ export default function UpBox(prop) {
     function repositionUpButton() {
       const iconX = iconEl.current.x;
       const iconY = iconEl.current.y;
-    
+
       // setButtonGroupShow(false);
       console.log(iconX, iconY);
     }
@@ -30,10 +29,8 @@ export default function UpBox(prop) {
       // window.addEventListener("resize", repositionUpButton, false);
     }, []);
 
-    const onDrop = useCallback((acceptedFiles) => {
-    }, []);
+    const onDrop = useCallback((acceptedFiles) => {}, []);
 
-    
     const onDropAccepted = useCallback((acceptedFiles) => {
       console.log(acceptedFiles);
       toast.info("File accepted! Click upload", {
@@ -91,8 +88,28 @@ export default function UpBox(prop) {
     ));
 
     const onUploadClick = (e) => {
-      uploadFileRemote(acceptedFiles);
+      const req = uploadFileRemote(acceptedFiles);
+      
       toast.info("uploading...");
+      req.on("progress", (event) => {
+        console.log(event);
+        /* event的值：
+        {
+          direction: "upload" or "download"
+          percent: 0 to 100 // 如果文件大小未知，可能会没有
+          total: // 总文件大小，可能没有
+          loaded: // 到目前为止下载或上传的字节数
+        } */
+      });
+      req.end((err, res) => {
+        if (err) {
+          console.log(err);
+          toast.error(`Upload failed: ${err}`);
+        } else {
+          console.log(res.body);
+          toast.success(`Upload successful`);
+        }
+      });
     };
 
     const onClearClick = (e) => {
@@ -105,32 +122,32 @@ export default function UpBox(prop) {
       if (fileAccepted) {
         return (
           <div ref={upbtnEl} className={styles.btnUpGroup}>
-          <span>
-            <button
-              type="button"
-              className={[
-                styles.button,
-                styles.btnUpGroup,
-                styles.uploadButton,
-              ].join(" ")}
-              onClick={onUploadClick}
-            >
-              Upload
-            </button>
-            <button
-              type="button"
-              className={[
-                styles.button,
-                styles.btnUpGroup,
-                styles.clearButton,
-              ].join(" ")}
-              onClick={onClearClick}
-            >
-              🚮
-            </button>
-          </span>
-        </div>
-        )
+            <span>
+              <button
+                type="button"
+                className={[
+                  styles.button,
+                  styles.btnUpGroup,
+                  styles.uploadButton,
+                ].join(" ")}
+                onClick={onUploadClick}
+              >
+                Upload
+              </button>
+              <button
+                type="button"
+                className={[
+                  styles.button,
+                  styles.btnUpGroup,
+                  styles.clearButton,
+                ].join(" ")}
+                onClick={onClearClick}
+              >
+                🚮
+              </button>
+            </span>
+          </div>
+        );
       } else {
         return (
           <div className={styles.uploadFooter}>
@@ -148,7 +165,7 @@ export default function UpBox(prop) {
         );
       }
     }
-    
+
     return (
       <div className={styles.myDropCard}>
         <div {...getRootProps()} className={styles.myDropCard}>
@@ -164,14 +181,17 @@ export default function UpBox(prop) {
                   alt="Upload"
                   className={styles.uploadIcon}
                 ></img>
-                {fileAccepted == false ? <p>Select ...</p> : <ul style={{margin:0}}>{files}</ul>}
+                {fileAccepted == false ? (
+                  <p>Select ...</p>
+                ) : (
+                  <ul style={{ margin: 0 }}>{files}</ul>
+                )}
               </div>
             </div>
 
             <DpzFooter />
           </section>
         </div>
-
       </div>
     );
   }
