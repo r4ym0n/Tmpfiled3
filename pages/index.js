@@ -15,7 +15,6 @@ import UpBox from '../components/UpBox'
 
 
 export default function Home() {
-  const [boxHeight, setboxHeight] = useState(0);
   useEffect(() => {
   },[])
 
@@ -38,7 +37,7 @@ export default function Home() {
         </p>
 
         {/* <div className="grid" style={{height: boxHeight}}> */}
-        <div className="grid" style={{height: boxHeight}}>
+        <div className="grid">
           <UpBox/>
           <DwnBox/>
         </div>
