@@ -29,11 +29,11 @@ export default function Home() {
 
       <main>
         <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Tmpfiled3</a>
+          Welcome to <a href="https://github.com/r4ym0n/Tmpfiled3">Tmpfiled3</a>
         </h1>
 
         <p className="description">
-          Transfer your file with <b style={{color: 'blue'}}>Decenterlized Internet</b>
+          Transfer your file with <b style={{color: 'blue'}}><a href="https://www.storj.io/"> Decenterlized Internet</a></b>
         </p>
 
         {/* <div className="grid" style={{height: boxHeight}}> */}
