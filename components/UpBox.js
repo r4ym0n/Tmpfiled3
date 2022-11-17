@@ -177,7 +177,7 @@ export default function UpBox(prop) {
         <div {...getRootProps()} className={styles.myDropCard}>
           <input {...getInputProps()} />
           <section className={styles.myDropCard}>
-            <h3>Chose file</h3>
+            <h3>Upload file</h3>
             {/* <button type="button" className="btn btn-primary">Select...</button> */}
             <div className={styles.uploadIconWp}>
               <div>
